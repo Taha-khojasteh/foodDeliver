@@ -6,6 +6,8 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import DetailRestaurant from "./screens/DetailRestaurant";
 import ApplyFormUser from "./screens/ApplyFormUser";
+import HistoryPayments from "./screens/HistoryPayments";
+import Payment from "./screens/Payment";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,7 +20,7 @@ export default function App() {
       <SafeAreaProvider>
         {/*<Navigation colorScheme={colorScheme} />*/}
         <StatusBar />
-        <ApplyFormUser/>
+        <Payment/>
       </SafeAreaProvider>
     );
   }
