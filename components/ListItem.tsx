@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: 13,
         backgroundColor: Colors.white,
-        marginTop: 50
+        marginTop: 3
     },
     image: {
         width: 70,

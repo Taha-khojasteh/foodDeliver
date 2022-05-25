@@ -8,6 +8,8 @@ import DetailRestaurant from "./screens/DetailRestaurant";
 import ApplyFormUser from "./screens/ApplyFormUser";
 import HistoryPayments from "./screens/HistoryPayments";
 import Payment from "./screens/Payment";
+import FlashMessage from "react-native-flash-message";
+
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,9 +20,10 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        {/*<Navigation colorScheme={colorScheme} />*/}
-          <Payment/>
+        <Navigation colorScheme={colorScheme} />
+        {/*  <Payment />*/}
           <StatusBar />
+        <FlashMessage position="top" />
       </SafeAreaProvider>
     );
   }

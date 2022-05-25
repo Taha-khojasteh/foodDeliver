@@ -1,27 +1,28 @@
-import React, {useState} from 'react';
-import {
-    CardForm,
-    GooglePayButton,
-    StripeProviderProps,
-    useConfirmPayment,
-    useStripe
-} from "@stripe/stripe-react-native";
+import React, {useEffect, useState} from 'react';
+import {CardForm, StripeProvider, useConfirmPayment,} from "@stripe/stripe-react-native";
 import {Alert, Button} from "react-native";
-import {StripeProvider} from '@stripe/stripe-react-native';
-import axios from "axios";
+import {showMessage} from "react-native-flash-message";
 
 function Payment() {
-    const [cardData, setCardData] = useState('')
     const [key, setKey] = useState('')
     const {confirmPayment, loading} = useConfirmPayment()
+
+
+    useEffect(() => {
+        const url = 'http://192.168.1.123:4242/create-checkout-intent'
+        fetch(url, {method: 'POST', })
+            .then((res) => res.json())
+            .then((res) => {
+                const intent = res as { clientSecret: string }
+                setKey(intent.clientSecret)
+                console.log('Done')
+                console.log(key)
+            }).catch(err => console.log(err))
+
+
+    }, [])
     const handlePayPress = async () => {
-        //api call check
-        const url = 'http://192.168.1.103:4242/create-checkout-intent'
-        const response = await axios.post(url).then((res) => {
-            const intent = res as { clientSecret: string }
-            setKey(intent.clientSecret)
-        }).catch(err => console.log(err))
-1
+
         const {error, paymentIntent} = await confirmPayment(key, {
             type: 'Card',
             billingDetails: {
@@ -29,10 +30,16 @@ function Payment() {
             },
 
         })
+
+
         if (error) {
             Alert.alert('Error', error.message)
         } else {
-            Alert.alert('Payment Successful ')
+            Alert.alert('Successful', 'Thanks for your purchase.')
+            showMessage({
+                type: "success",
+                message: 'Thanks for your purchase.'
+            })
         }
     }
 
@@ -43,10 +50,6 @@ function Payment() {
                 publishableKey={'pk_test_51L2sEqBeMsITHK2aBBnpm44QiKM6ZEbydfe6pQuBHcioVdJ2cFbuvKNIJR4T1p47ylXsqoj2mNmKF9QJ0KJVgkN000y7u10No2'}>
 
                 <CardForm
-                    onFormComplete={(cardDetails) => {
-                        console.log('card details', cardDetails);
-                        setCardData(cardDetails);
-                    }}
 
                     style={{height: 280, marginTop: 150}}
                 />

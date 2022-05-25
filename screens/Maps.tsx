@@ -3,7 +3,7 @@ import MapView, {Callout, Marker} from 'react-native-maps';
 import {RootTabScreenProps} from '../types';
 
 
-export default function TabOneScreen({navigation}: RootTabScreenProps<'TabOne'>) {
+export default function Maps({navigation}: RootTabScreenProps<'Maps'>) {
 
   const tokyoRegion = {
     latitude: 51.512909,
