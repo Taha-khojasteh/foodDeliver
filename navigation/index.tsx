@@ -19,6 +19,9 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import {RootStackParamList, RootTabParamList, RootTabScreenProps} from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import HistoryPayments from "../screens/HistoryPayments";
+import DetailRestaurant from "../screens/DetailRestaurant";
+import ApplyFormUser from "../screens/ApplyFormUser";
+import Payment from "../screens/Payment";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -38,8 +41,10 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Modal" component={DetailRestaurant} />
       </Stack.Group>
+        <Stack.Screen name={"formUser"} component={ApplyFormUser}/>
+        <Stack.Screen name={"payment"} component={Payment}/>
     </Stack.Navigator>
   );
 }

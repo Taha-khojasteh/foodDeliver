@@ -2,17 +2,20 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {FontAwesome} from '@expo/vector-icons';
 import AvailableTables from "../components/AvailableTables";
+import {RootTabScreenProps} from "../types";
 
-function DetailRestaurant() {
+function DetailRestaurant({route, navigation}: RootTabScreenProps<'Map'>) {
+    const items = route.params;
+
     return (
 
         <View style={{width: '90%', alignSelf: 'center', paddingTop: 33,}}>
-            <Image source={{uri: 'https://www.hot-dinners.com/images/stories/features/2020/setlunches/aquashard.jpg'}}
+            <Image source={{uri: items.imageRestaurant}}
                    style={{width: '100%', height: 250, borderRadius: 5}}/>
 
             <View style={styles.titleContainer}>
                 <Text style={{fontSize: 20, padding: 10, fontWeight: 'bold'}}>
-                    The clove clob
+                    {items.restaurantName}
                 </Text>
 
                 <FontAwesome name="star-half-empty" size={24} color="gold"
@@ -20,16 +23,13 @@ function DetailRestaurant() {
 
                 <Text style={{right: 50, position: 'absolute',
                     top: 15,fontWeight: 'bold', color: 'gray'}}>
-                    2/5
+                    {items.stars}
                 </Text>
 
             </View>
-
-
-            <AvailableTables time={22} period={15} fee={30}/>
-            <AvailableTables time={15} period={20} fee={15}/>
-            <AvailableTables time={12} period={10} fee={45}/>
-
+            {items.availableTimes.map(({time,_id,fee,period})=> (<AvailableTables key={_id} time={time} period={period}
+                                                                                  fee={fee} onPress={()=> navigation.navigate('formUser')}/>
+            ))}
         </View>
 
 

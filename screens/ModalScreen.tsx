@@ -5,11 +5,11 @@ import { Text, View } from '../components/Themed';
 import { RootTabScreenProps} from "../types";
 import { RouteProp } from '@react-navigation/native';
 
-export default function ModalScreen({route, navigation}: RootTabScreenProps<'TabOne'>) {
-  const { placeName, fee } = route.params;
+export default function ModalScreen({route, navigation}: RootTabScreenProps<'Map'>) {
+  const items = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{JSON.stringify(placeName)}</Text>
+      <Text style={styles.title}>{items.restaurantName}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/ModalScreen.tsx" />
 

@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Image, Text, View} from 'react-native';
 import FormInput from "../components/FormInput";
 import CircleIcon from "../components/CircleIcon";
+import {RootTabScreenProps} from "../types";
+import { Formik } from 'formik';
 
-function ApplyFormUser() {
+function ApplyFormUser({route, navigation}:RootTabScreenProps<'Map'>) {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
     return (
         <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
 
-            <FormInput placeholder={'Your Full name '} iconName={"user"}/>
+            <FormInput placeholder={'Your Full name '} iconName={"user"} />
             <FormInput placeholder={'Enter your Email'} iconName={"mail"}/>
 
-            <CircleIcon/>
+
+            <CircleIcon onPress={()=> navigation.navigate('payment')}/>
         </View>
     );
 }

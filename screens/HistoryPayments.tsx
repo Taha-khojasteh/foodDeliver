@@ -5,18 +5,21 @@ import axios from "axios";
 
 function HistoryPayments() {
     const [data, setData] = useState([])
-    useEffect(() => {
-        const url = 'http://192.168.1.123:4242/user/paymentIntent'
-        axios.get(url).then((res) => setData(res));
-        console.log(data[2])
+    useEffect(()=> {
+        callListResturants()
+    },[])
 
-    }, [])
+    const callListResturants = async() => {
+        const url = 'http://192.168.1.123:4242/user/paymentIntent'
+        await axios.get(url).then((res)=> setData(res.data))
+
+    }
 
     return (
         <>
-            <FlatList data={data} renderItem={(item) =>
-                <ListItem title={item} subtitle={'18:00'}/>
-            }/>
+            <ListItem title={"purchased"} subtitle={'18:00'}/>
+            <ListItem title={"purchased"} subtitle={'20:00'}/>
+
         </>
 
 

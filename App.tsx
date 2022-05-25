@@ -21,7 +21,7 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
-        {/*  <Payment />*/}
+         {/* <Payment /> */}
           <StatusBar />
         <FlashMessage position="top" />
       </SafeAreaProvider>

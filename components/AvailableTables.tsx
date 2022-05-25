@@ -4,7 +4,7 @@ import {FontAwesome, FontAwesome5, Ionicons} from "@expo/vector-icons";
 import DetailRestaurant from "../screens/DetailRestaurant";
 
 
-function AvailableTables(Props: {time: number,period: number, fee: number}) {
+function AvailableTables(Props: {time: number,period: number, fee: number, onPress:any}) {
     return (
         <View style={styles.container}>
             <View style={{flexDirection: "row", flex: 1, justifyContent: 'space-between',}}>
@@ -24,7 +24,7 @@ function AvailableTables(Props: {time: number,period: number, fee: number}) {
                     <Text style={styles.text}>{Props.fee}</Text>
                 </View>
 
-                <Button title={'Order'} color={'#fec208'}/>
+                <Button title={'Order'} color={'#fec208'} onPress={Props.onPress}/>
 
             </View>
         </View>

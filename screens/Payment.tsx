@@ -9,14 +9,13 @@ function Payment() {
 
 
     useEffect(() => {
-        const url = 'http://192.168.1.123:4242/create-checkout-intent'
+        const url = 'http://192.168.1.103:4242/create-checkout-intent'
         fetch(url, {method: 'POST', })
             .then((res) => res.json())
             .then((res) => {
                 const intent = res as { clientSecret: string }
                 setKey(intent.clientSecret)
                 console.log('Done')
-                console.log(key)
             }).catch(err => console.log(err))
 
 
@@ -50,8 +49,7 @@ function Payment() {
                 publishableKey={'pk_test_51L2sEqBeMsITHK2aBBnpm44QiKM6ZEbydfe6pQuBHcioVdJ2cFbuvKNIJR4T1p47ylXsqoj2mNmKF9QJ0KJVgkN000y7u10No2'}>
 
                 <CardForm
-
-                    style={{height: 280, marginTop: 150}}
+                style={{height: 280, marginTop: 150}}
                 />
 
                 <Button title={"Pay"} onPress={handlePayPress} disabled={loading}/>

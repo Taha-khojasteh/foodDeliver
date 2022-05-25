@@ -2,10 +2,10 @@ import {View, StyleSheet, TouchableOpacity} from "react-native";
 import {AntDesign,} from "@expo/vector-icons";
 
 
-function CircleIcon() {
+function CircleIcon(Props: {onPress:any}) {
     return (
-        <TouchableOpacity  style={{marginTop: 150, alignSelf: 'center'}}>
-            <View style={styles.circle}>
+        <TouchableOpacity  style={{marginTop: 150, alignSelf: 'center'}} onPress={Props.onPress}>
+            <View style={styles.circle} >
                 <AntDesign name={'arrowright'} size={24} color="grey" style={styles.iconStyle}/>
             </View>
         </TouchableOpacity>
